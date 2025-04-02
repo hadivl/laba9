@@ -15,14 +15,21 @@ jobs:
     runs-on: windows-latest
     
     steps:
+      - name: Checkout code
       - uses: actions/checkout@v3
 
-      - name: Setup .NET
+      - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: |
-            ${{ env.DOTNET_VERSION}}
-            ${{ env.DOTNET_FRAMEWORK_VERSION }}
+          dotnet-version: ${{ env.DOTNET_VERSION}}
+          
+      - name: Cache NuGet packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
 
       - name: Rstore dependencies
         run: dotnet restore
