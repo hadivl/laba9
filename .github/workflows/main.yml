@@ -8,10 +8,11 @@ on:
 
 env:
   DOTNET_VERSION: '8.0.x'
+  DOTNET_FRAMEWORK_VERSION: '4.7.2'
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     
     steps:
       - uses: actions/checkout@v3
@@ -19,7 +20,9 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION}}
+          dotnet-version: |
+            ${{ env.DOTNET_VERSION}}
+            ${{ env.DOTNET_FRAMEWORK_VERSION }}
 
       - name: Rstore dependencies
         run: dotnet restore
