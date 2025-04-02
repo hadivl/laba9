@@ -1,5 +1,5 @@
 ﻿using System;
-using CalculatorLib;
+using CalculatorLib1;
 
 namespace Lab9
 {

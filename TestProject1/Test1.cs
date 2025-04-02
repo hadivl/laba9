@@ -1,4 +1,4 @@
-﻿using CalculatorLib;
+﻿using CalculatorLib1;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestProject1
